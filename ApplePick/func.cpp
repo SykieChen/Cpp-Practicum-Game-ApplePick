@@ -14,6 +14,6 @@ void transimg(int dstX, int dstY, IMAGE *sImg, IMAGE *xImg) {
 	delete hImg;
 }
 
-void repaintBlock(int x1, int x2, int y1, int y2, IMAGE* bg) {
+void repaintBlock(int x1, int y1, int x2, int y2, IMAGE* bg) {
 	putimage(x1, y1, x2 - x1, y2 - y1, bg, x1, y1);
 }

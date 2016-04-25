@@ -1,7 +1,6 @@
-#include <iostream>
-#include <conio.h>
+
 #include "apple.h"
-#include <time.h>
+
 
 
 int main() {
@@ -24,7 +23,11 @@ int main() {
 	loadimage(&bt_exit, L"img\\bt_exit.bmp");
 	loadimage(&bt_hs, L"img\\bt_hs.bmp");
 	loadimage(&btx, L"img\\btx.bmp");
+	//get name
+	wchar_t usrName[20];
+	while (!InputBox(usrName, 20, L"Please input your name:", L"Input name") || !wcscmp(usrName, L""));
 	//init
-
+	formMain frMain(usrName, 800, 600, &bg, &bt_play, &bt_pause, &bt_stop, &bt_exit, &bt_hs, &btx);
+	_getch();
 	return 0;
 }
