@@ -3,8 +3,10 @@
 #include <conio.h>
 #include <time.h>
 
-void transimg(int, int, IMAGE*, IMAGE*);
-void repaintBlock(int x1, int x2, int y1, int y2, IMAGE*);
+using namespace std;
+
+void transimg(int dstX, int dstY, IMAGE *sImg, IMAGE *xImg);
+void repaintBlock(int x1, int y1, int x2, int y2, IMAGE*);
 
 class button
 {
@@ -29,7 +31,7 @@ private:
 	int width;
 	int height;
 	//int value;
-	wchar_t text[30]=L"text";
+	wchar_t text[30] = L"text";
 	IMAGE* main_bg;
 
 public:
@@ -61,10 +63,56 @@ public:
 	~formMain();
 };
 
-class block 
+class block
 {
 private:
-	IMAGE* tree0, tree1, treex;
-	IMAGE* block, blockx;
+	IMAGE* itree0, *itree1, *itreex;
+	IMAGE* iblock, *iblockx;
+	IMAGE* main_bg;
+	bool haveTree = false;
+	bool haveApple = true;
+	int x, y;
+	int width, height;
+public:
+	block(bool haveTree, int x, int y,
+		IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
+		IMAGE* main_bg);
+	int getX();
+	int getY();
+	void moveL(int px);
+	void moveR(int px);
+	void getApple();
+	int getW();
+	int getH();
+	void show();
+	void hide();
 
+};
+
+struct blockNode {
+	block item;
+	blockNode* next;
+	blockNode(bool haveTree, int x, int y,
+		IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
+		IMAGE* main_bg);
+};
+
+class blockList {
+private:
+	int y;
+	int speed;
+	IMAGE* itree0, *itree1, *itreex;
+	IMAGE* iblock, *iblockx;
+	IMAGE* main_bg;
+public:
+	bool isL2R = false;
+	blockNode* head;
+	blockNode* tail;
+	blockList(int y, bool isL2R, int speed,
+		IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
+		IMAGE* main_bg);
+	void addNode(bool haveTree, int split);
+	void delNode();
+	void move();
+	~blockList();
 };

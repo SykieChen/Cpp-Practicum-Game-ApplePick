@@ -17,3 +17,8 @@ void transimg(int dstX, int dstY, IMAGE *sImg, IMAGE *xImg) {
 void repaintBlock(int x1, int y1, int x2, int y2, IMAGE* bg) {
 	putimage(x1, y1, x2 - x1, y2 - y1, bg, x1, y1);
 }
+
+blockNode::blockNode(bool haveTree, int x, int y,
+	IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
+	IMAGE* main_bg) :
+	item(haveTree, x, y, itree0, itree1, itreex, iblock, iblockx, main_bg) {}

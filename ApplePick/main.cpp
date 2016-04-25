@@ -1,7 +1,4 @@
-
 #include "apple.h"
-
-
 
 int main() {
 	//load resources
@@ -28,6 +25,17 @@ int main() {
 	while (!InputBox(usrName, 20, L"Please input your name:", L"Input name") || !wcscmp(usrName, L""));
 	//init
 	formMain frMain(usrName, 800, 600, &bg, &bt_play, &bt_pause, &bt_stop, &bt_exit, &bt_hs, &btx);
-	_getch();
+
+	//lists of blocks
+	blockList list1(350-151, true, 2, &tree0, &tree1, &treex, &block, &blockx, &bg);
+
+	//main loop
+	list1.addNode(true, 5);
+	while (list1.tail->item.getX() < 800) {
+		list1.move();
+		Sleep(20);
+	}
+	list1.delNode();
+	//_getch();
 	return 0;
 }

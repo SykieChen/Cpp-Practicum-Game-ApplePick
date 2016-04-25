@@ -146,6 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="block.cpp" />
+    <ClCompile Include="blockList.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="formMain.cpp" />
     <ClCompile Include="label.cpp" />
