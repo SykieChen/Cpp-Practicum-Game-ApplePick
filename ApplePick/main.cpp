@@ -1,83 +1,8 @@
 #include <iostream>
 #include <conio.h>
-#include <graphics.h>
+#include "apple.h"
 #include <time.h>
 
-void transimg(int dstX, int dstY, IMAGE *sImg, IMAGE *xImg) {
-	// Trick to display transparent images
-	IMAGE *workImg = GetWorkingImage();
-	IMAGE *hImg = new IMAGE; // make a copy of the origional image
-	Resize(hImg, sImg->getwidth(), sImg->getheight());
-	SetWorkingImage(hImg);
-	putimage(0, 0, sImg);
-	putimage(0, 0, xImg, SRCINVERT);
-	SetWorkingImage(workImg);
-	putimage(dstX, dstY, xImg, SRCAND);
-	putimage(dstX, dstY, hImg, SRCPAINT);
-	delete hImg;
-}
-
-class button {
-private:
-	int width;
-	int height;
-	int x;
-	int y;
-	IMAGE* bg;
-	IMAGE* bgx;
-public:
-	button(int w, int h, int x, int y, IMAGE* bg, IMAGE* bgx) {
-		this->width = w;
-		this->height = h;
-		this->x = x;
-		this->y = y;
-		this->bg = bg;
-		this->bgx = bgx;
-		show();
-	}
-
-	void show() {
-		transimg(x, y, bg, bgx);
-	}
-
-	bool chkRange(int mouseX, int mouseY) {
-		if (mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height)
-			return true;
-		else return false;
-	}
-
-};
-
-class label {
-private:
-	int x;
-	int y;
-	int width;
-	int height;
-
-public:
-
-};
-
-class formMain {
-private:
-	int width;
-	int height;
-	IMAGE bg;
-	button play, pause, stop, exit, hs;
-public:
-	formMain(int width, int height, IMAGE* bg,
-		IMAGE* bt_play, IMAGE* bt_pause, IMAGE* bt_stop, IMAGE* bt_exit, IMAGE* bt_hs, IMAGE* btx) :
-		play(btx->getwidth(), btx->getheight(), 35, 560, bt_play, btx),
-		pause(btx->getwidth(), btx->getheight(), 188, 560, bt_pause, btx),
-		stop(btx->getwidth(), btx->getheight(), 341, 560, bt_stop, btx),
-		exit(btx->getwidth(), btx->getheight(), 494, 560, bt_exit, btx),
-		hs(btx->getwidth(), btx->getheight(), 647, 560, bt_hs, btx) {
-
-		initgraph(800, 600);
-
-	}
-};
 
 int main() {
 	//load resources
