@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bear.cpp" />
     <ClCompile Include="block.cpp" />
     <ClCompile Include="blockList.cpp" />
     <ClCompile Include="button.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="label.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="func.cpp" />
+    <ClCompile Include="man.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="apple.h" />

@@ -81,7 +81,7 @@ public:
 	int getY();
 	void moveL(int px);
 	void moveR(int px);
-	void getApple();
+	bool getApple();
 	int getW();
 	int getH();
 	void show();
@@ -115,4 +115,39 @@ public:
 	void delNode();
 	void move();
 	~blockList();
+};
+
+class man {
+private:
+	int x, y;
+	int w, h;
+	bool isOnGround = true;
+	IMAGE* iman, *imanx;
+	IMAGE* main_bg;
+public:
+	man(int x, int y, IMAGE* iman, IMAGE* imanx, IMAGE* main_bg);
+	int getX();
+	int getY();
+	void jump();
+	void fall();
+	void moveL();
+	void moveR();
+	void show();
+	int getW();
+	int getH();
+	void hide();
+};
+
+class bear {
+private:
+	int x, y, w, h;
+	bool isMovingUp = true;
+	IMAGE* ibear, *ibearx;
+	IMAGE* main_bg;
+public:
+	bear(int x, int y, IMAGE* ibear, IMAGE* ibearx, IMAGE* bg);
+	bool ifCaught(man man0);
+	void move(int top, int bottom);
+	void show();
+	void hide();
 };

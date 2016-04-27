@@ -39,10 +39,14 @@ void block::moveR(int px) {
 	x += px;
 	show();
 }
-void block::getApple() {
-	hide();
-	haveApple = false;
-	show();
+bool block::getApple() {
+	if (haveApple) {
+		hide();
+		haveApple = false;
+		show();
+		return true;
+	}
+	else return false;
 }
 int block::getW() {
 	return width;

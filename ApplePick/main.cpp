@@ -1,6 +1,7 @@
 #include "apple.h"
 
 int main() {
+	srand((unsigned)time(NULL));
 	//load resources
 	IMAGE bg, bear, bearx, man, manx, block, blockx, tree0, tree1, treex;
 	IMAGE bt_play, bt_pause, bt_stop, bt_exit, bt_hs, btx;
@@ -27,12 +28,18 @@ int main() {
 	formMain frMain(usrName, 800, 600, &bg, &bt_play, &bt_pause, &bt_stop, &bt_exit, &bt_hs, &btx);
 
 	//lists of blocks
-	blockList list1(350-151, true, 2, &tree0, &tree1, &treex, &block, &blockx, &bg);
+	blockList list1(320, true, 2, &tree0, &tree1, &treex, &block, &blockx, &bg);
+	blockList list2(175, false, 2, &tree0, &tree1, &treex, &block, &blockx, &bg);
+	blockList list3(30, true, 2, &tree0, &tree1, &treex, &block, &blockx, &bg);
 
 	//main loop
 	list1.addNode(true, 5);
+	list2.addNode(true, 5);
+	list3.addNode(true, 5);
 	while (list1.tail->item.getX() < 800) {
 		list1.move();
+		list2.move();
+		list3.move();
 		Sleep(20);
 	}
 	list1.delNode();

@@ -2,10 +2,10 @@
 
 formMain::formMain(LPCTSTR usrName, int width, int height, IMAGE* bg,
 	IMAGE* bt_play, IMAGE* bt_pause, IMAGE* bt_stop, IMAGE* bt_exit, IMAGE* bt_hs, IMAGE* btx) :
-	lbUsrName(150, 20, 50, 10, bg),
-	lbTime(150, 20, 250, 10, bg),
-	lbScore(150, 20, 450, 10, bg),
-	lbHighScore(150, 20, 650, 10, bg),
+	lbUsrName(150, 20, 50, 5, bg),
+	lbTime(150, 20, 250, 5, bg),
+	lbScore(150, 20, 450, 5, bg),
+	lbHighScore(150, 20, 650, 5, bg),
 	btPlay(btx->getwidth(), btx->getheight(), 35, 540, bt_play, btx),
 	btPause(btx->getwidth(), btx->getheight(), 188, 540, bt_pause, btx),
 	btStop(btx->getwidth(), btx->getheight(), 341, 540, bt_stop, btx),

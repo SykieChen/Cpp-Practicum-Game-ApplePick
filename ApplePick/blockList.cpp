@@ -4,8 +4,8 @@ blockList::blockList(int y,bool isL2R,int speed,
 	IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
 	IMAGE* main_bg) 
 {
-
-	head = new blockNode(false, 0, y, itree0, itree1, itreex, iblock, iblockx, main_bg);
+	int headx = isL2R ? 0 : 800 - itreex->getwidth();
+	head = new blockNode(false, headx, y, itree0, itree1, itreex, iblock, iblockx, main_bg);
 	head->next = NULL;
 	tail = head;
 	this->isL2R = isL2R;
