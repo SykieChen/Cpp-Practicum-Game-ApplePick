@@ -15,12 +15,17 @@ int man::getX() {
 int man::getY() {
 	return y;
 }
+int man::getPxJumped() {
+	return pxJumped;
+}
 void man::jump() {
+	pxJumped += 1;
 	hide();
 	y -= 1;
 	show();
 }
 void man::fall() {
+	pxJumped = 0;
 	hide();
 	y += 1;
 	show();

@@ -3,10 +3,12 @@
 #include <conio.h>
 #include <time.h>
 
+
 using namespace std;
 
 void transimg(int dstX, int dstY, IMAGE *sImg, IMAGE *xImg);
 void repaintBlock(int x1, int y1, int x2, int y2, IMAGE*);
+
 
 class button
 {
@@ -47,11 +49,11 @@ private:
 	int width;
 	int height;
 	IMAGE* bg;
-	button btPlay, btPause, btStop, btExit, btHs;
 	label lbUsrName, lbTime, lbScore, lbHighScore;
 	int time = 60, score = 0;
 	int highScore = 0;
 public:
+	button btPlay, btPause, btStop, btExit, btHs;
 	formMain(LPCTSTR usrName, int width, int height, IMAGE* bg,
 		IMAGE* bt_play, IMAGE* bt_pause, IMAGE* bt_stop, IMAGE* bt_exit, IMAGE* bt_hs, IMAGE* btx);
 	int getTime();
@@ -121,11 +123,14 @@ class man {
 private:
 	int x, y;
 	int w, h;
-	bool isOnGround = true;
+	int pxJumped = 0;
 	IMAGE* iman, *imanx;
 	IMAGE* main_bg;
 public:
+	bool isJumping = false;
+	bool isOnGround = true;
 	man(int x, int y, IMAGE* iman, IMAGE* imanx, IMAGE* main_bg);
+	int getPxJumped();
 	int getX();
 	int getY();
 	void jump();
@@ -151,3 +156,5 @@ public:
 	void show();
 	void hide();
 };
+
+void pause(formMain* frm);

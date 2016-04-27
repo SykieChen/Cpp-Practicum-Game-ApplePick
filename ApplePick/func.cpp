@@ -18,6 +18,21 @@ void repaintBlock(int x1, int y1, int x2, int y2, IMAGE* bg) {
 	putimage(x1, y1, x2 - x1, y2 - y1, bg, x1, y1);
 }
 
+void pause(formMain* frm) {
+	MOUSEMSG mouseMsg = GetMouseMsg();
+	while (1) {
+		if (MouseHit()) {
+			mouseMsg = GetMouseMsg();
+			if (mouseMsg.uMsg == WM_LBUTTONDOWN) {
+				//clicked
+				if (frm->btPause.chkRange(mouseMsg.x, mouseMsg.y))
+					return;
+			}
+		}
+		Sleep(1);
+	}
+}
+
 blockNode::blockNode(bool haveTree, int x, int y,
 	IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
 	IMAGE* main_bg) :
