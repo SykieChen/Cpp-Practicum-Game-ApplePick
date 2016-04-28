@@ -37,3 +37,71 @@ blockNode::blockNode(bool haveTree, int x, int y,
 	IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
 	IMAGE* main_bg) :
 	item(haveTree, x, y, itree0, itree1, itreex, iblock, iblockx, main_bg) {}
+
+
+
+void checkBlockBottom(man* GTQ, blockList* list) {
+	if (GTQ->getY() <= list->tail->item.getY() + list->tail->item.getH()  &&
+		GTQ->getY() >= list->tail->item.getY() + list->tail->item.getH() - 10) {
+		blockNode* p = list->head->next;
+		while (p != NULL) {
+			if (p->item.onBlock(GTQ)) {
+				GTQ->isJumping = false;
+			}
+			p = p->next;
+		}
+	}
+}
+
+void checkBlockTop(man* GTQ, blockList* list) {
+	if (GTQ->getY() + GTQ->getH() <= list->tail->item.getY() + 100 &&
+		GTQ->getY() + GTQ->getH() >= list->tail->item.getY() + 100 - 10) {
+		blockNode* p = list->head->next;
+		while (p != NULL) {
+			if (p->item.onBlock(GTQ)) {
+				GTQ->isOnGround = true;
+				GTQ->setY(list->tail->item.getY() + 100 - GTQ->getH());
+			}
+			p = p->next;
+		}
+	}
+}
+
+blockNode* checkManFall(man* GTQ, blockList* list) {
+	blockNode* p = list->head->next;
+	while (p != NULL) {
+		if (p->item.onBlock(GTQ) 
+			&& GTQ->getY() == p->item.getY() + 100 - GTQ->getH()
+			) {
+			return p;
+		}
+		p = p->next;
+	}
+	return NULL;
+}
+
+blockNode* checkOnGround(man* GTQ, blockList* list1, blockList* list2, blockList* list3) {
+	blockNode* p;
+	p = checkManFall(GTQ, list1);
+	if (p != NULL) return p;
+	else {
+		p = checkManFall(GTQ, list2);
+		if (p != NULL) return p;
+		else {
+			p = checkManFall(GTQ, list3);
+			if (p != NULL) return p;
+		}
+	}
+	return NULL;
+}
+
+bool getApple(man* GTQ, blockList* list1, blockList* list2, blockList* list3) {
+	blockNode* p = checkOnGround(GTQ, list1, list2, list3);
+
+	if (p != NULL) {
+		//on block
+		return p->item.getApple();	//try to get apple
+	}
+	return false;	//not on block
+
+}

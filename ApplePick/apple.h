@@ -2,13 +2,12 @@
 #include <iostream>
 #include <conio.h>
 #include <time.h>
-
+#include <fstream>
 
 using namespace std;
 
 void transimg(int dstX, int dstY, IMAGE *sImg, IMAGE *xImg);
 void repaintBlock(int x1, int y1, int x2, int y2, IMAGE*);
-
 
 class button
 {
@@ -65,6 +64,32 @@ public:
 	~formMain();
 };
 
+class man {
+private:
+	int x, y;
+	int w, h;
+	int pxJumped = 0;
+	IMAGE* iman, *imanx;
+	IMAGE* main_bg;
+public:
+	bool isJumping = false;
+	bool isOnGround = true;
+	man(int x, int y, IMAGE* iman, IMAGE* imanx, IMAGE* main_bg);
+	int getPxJumped();
+	int getX();
+	int getY();
+	void jump();
+	void fall();
+	void moveL();
+	void moveR();
+	void show();
+	int getW();
+	int getH();
+	void hide();
+	void setY(int y);
+	void reset(int x, int y);
+};
+
 class block
 {
 private:
@@ -79,6 +104,7 @@ public:
 	block(bool haveTree, int x, int y,
 		IMAGE* itree0, IMAGE* itree1, IMAGE* itreex, IMAGE* iblock, IMAGE* iblockx,
 		IMAGE* main_bg);
+	bool onBlock(man* man0);
 	int getX();
 	int getY();
 	void moveL(int px);
@@ -115,33 +141,14 @@ public:
 		IMAGE* main_bg);
 	void addNode(bool haveTree, int split);
 	void delNode();
+	void hide();
+	void show();
 	void move();
+	void clear();
 	~blockList();
 };
 
-class man {
-private:
-	int x, y;
-	int w, h;
-	int pxJumped = 0;
-	IMAGE* iman, *imanx;
-	IMAGE* main_bg;
-public:
-	bool isJumping = false;
-	bool isOnGround = true;
-	man(int x, int y, IMAGE* iman, IMAGE* imanx, IMAGE* main_bg);
-	int getPxJumped();
-	int getX();
-	int getY();
-	void jump();
-	void fall();
-	void moveL();
-	void moveR();
-	void show();
-	int getW();
-	int getH();
-	void hide();
-};
+
 
 class bear {
 private:
@@ -151,10 +158,16 @@ private:
 	IMAGE* main_bg;
 public:
 	bear(int x, int y, IMAGE* ibear, IMAGE* ibearx, IMAGE* bg);
-	bool ifCaught(man man0);
+	bool ifCaught(man* man0);
 	void move(int top, int bottom);
 	void show();
 	void hide();
+	void reset(int x, int y);
 };
 
 void pause(formMain* frm);
+void checkBlockBottom(man* GTQ, blockList* list);
+void checkBlockTop(man* GTQ, blockList* list);
+blockNode* checkManFall(man* GTQ, blockList* list);
+blockNode* checkOnGround(man* GTQ, blockList* list1, blockList* list2, blockList* list3);
+bool getApple(man* GTQ, blockList* list1, blockList* list2, blockList* list3);

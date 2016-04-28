@@ -9,28 +9,28 @@ bear::bear(int x, int y, IMAGE* ibear, IMAGE* ibearx, IMAGE* bg) {
 	this->main_bg = bg;
 	show();
 }
-bool bear::ifCaught(man man0) {
-	if (man0.getY() < y + h && man0.getY() + man0.getH() > y) return true;
+bool bear::ifCaught(man* man0) {
+	if (man0->getY() < y + h && man0->getY() + man0->getH() > y) return true;
 	else return false;
 }
 void bear::move(int top, int bottom) {
-	hide();
+	//hide();
 	if (isMovingUp) {
 		if (y > top) {
-			y -= 1;
+			y -= 2;
 		}
 		else {
 			isMovingUp = false;
-			y += 1;
+			y += 2;
 		}
 	}
 	else {
 		if (y + h < bottom) {
-			y += 1;
+			y += 2;
 		}
 		else {
 			isMovingUp = true;
-			y -= 1;
+			y -= 2;
 		}
 	}
 	show();
@@ -40,4 +40,11 @@ void bear::show() {
 }
 void bear::hide() {
 	repaintBlock(x, y, x + w, y + h, main_bg);
+}
+
+void bear::reset(int x,int y) {
+	this->x = x;
+	this->y = y;
+	isMovingUp = true;
+	show();
 }

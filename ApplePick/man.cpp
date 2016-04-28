@@ -19,25 +19,25 @@ int man::getPxJumped() {
 	return pxJumped;
 }
 void man::jump() {
-	pxJumped += 1;
-	hide();
-	y -= 1;
+	pxJumped += 10;
+	//hide();
+	y -= 10;
 	show();
 }
 void man::fall() {
 	pxJumped = 0;
-	hide();
-	y += 1;
+	//hide();
+	y += 10;
 	show();
 }
 void man::moveL() {
-	hide();
-	x -= 1;
+	//hide();
+	x -= 3;
 	show();
 }
 void man::moveR() {
-	hide();
-	x += 1;
+	//hide();
+	x += 3;
 	show();
 }
 
@@ -52,4 +52,17 @@ int man::getW() {
 }
 int man::getH() {
 	return h;
+}
+
+void man::setY(int y) {
+	this->y = y;
+}
+
+void man::reset(int x, int y) {
+	this->x = x;
+	this->y = y;
+	pxJumped = 0;
+	isJumping = false;
+	isOnGround = true;
+	show();
 }

@@ -6,7 +6,7 @@ label::label(int w, int h, int x, int y,IMAGE* bg){
 	this->x = x;
 	this->y = y;
 	this->main_bg = bg;
-	show();
+	//show();
 }
 
 void label::show(){

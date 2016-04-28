@@ -30,12 +30,12 @@ int block::getY() {
 	return y;
 }
 void block::moveL(int px) {
-	hide();
+	//hide();
 	x -= px;
 	show();
 }
 void block::moveR(int px) {
-	hide();
+	//hide();
 	x += px;
 	show();
 }
@@ -57,4 +57,11 @@ int block::getH() {
 
 void block::hide() {
 	repaintBlock(x, y, x + width, y + height, main_bg);
+}
+
+bool block::onBlock(man* man0) {
+	if (man0->getX() + man0->getW() - 10 > x &&
+		man0->getX() + 10 < x + width )
+		return true;
+	return false;
 }
