@@ -69,6 +69,7 @@ private:
 	int x, y;
 	int w, h;
 	int pxJumped = 0;
+	int pxFallen = 0;
 	IMAGE* iman, *imanx;
 	IMAGE* main_bg;
 public:
@@ -76,6 +77,7 @@ public:
 	bool isOnGround = true;
 	man(int x, int y, IMAGE* iman, IMAGE* imanx, IMAGE* main_bg);
 	int getPxJumped();
+	int getPxFallen();
 	int getX();
 	int getY();
 	void jump();

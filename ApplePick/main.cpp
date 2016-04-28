@@ -100,7 +100,7 @@ int main() {
 				}
 				else {
 					//jump
-					if (isPlaying) GTQ.isJumping = true;
+					if (isPlaying && GTQ.isOnGround) GTQ.isJumping = true;
 				}
 			}
 
@@ -251,6 +251,11 @@ int main() {
 					else if (GTQ.isOnGround == false) {
 						//man falling
 						GTQ.fall();
+						//if dropped more than 240px, die
+						if (GTQ.getPxFallen() > 240) {
+							gameOver = true;
+							MessageBox(NULL, TEXT("Game Over\nYou have fallen for more than one level!"), TEXT("Game Over"), MB_ICONINFORMATION | MB_OK);
+						}
 						//check base ground
 						if (GTQ.getY() >= 470) {
 							GTQ.setY(470);

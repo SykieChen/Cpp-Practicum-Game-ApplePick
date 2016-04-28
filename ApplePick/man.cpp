@@ -18,14 +18,19 @@ int man::getY() {
 int man::getPxJumped() {
 	return pxJumped;
 }
+int man::getPxFallen() {
+	return pxFallen;
+}
 void man::jump() {
 	pxJumped += 10;
+	pxFallen = 0;
 	//hide();
 	y -= 10;
 	show();
 }
 void man::fall() {
 	pxJumped = 0;
+	pxFallen += 10;
 	//hide();
 	y += 10;
 	show();
