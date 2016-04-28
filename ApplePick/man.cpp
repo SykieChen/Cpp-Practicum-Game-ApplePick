@@ -38,11 +38,13 @@ void man::fall() {
 void man::moveL() {
 	//hide();
 	x -= 3;
+	pxFallen = 0;
 	show();
 }
 void man::moveR() {
 	//hide();
 	x += 3;
+	pxFallen = 0;
 	show();
 }
 

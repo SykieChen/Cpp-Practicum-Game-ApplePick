@@ -93,6 +93,7 @@ int main() {
 					wchar_t *WStr;
 					WStr = (wchar_t*)malloc(len * sizeof(wchar_t));
 					mbstowcs_s(&converted, WStr, len, savedName, _TRUNCATE);
+
 					wchar_t cont[100];
 					swprintf_s(cont, L"%s\t%d", WStr, savedScore);
 					MessageBox(NULL, cont, TEXT("High Score"), MB_ICONINFORMATION | MB_OK);
